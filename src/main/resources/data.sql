@@ -1,5 +1,5 @@
-drop table if exists hotel_bookings;
 drop table if exists booking_dates;
+drop table if exists hotel_bookings;
 
 create table hotel_bookings (
 	id INT AUTO_INCREMENT PRIMARY KEY,
@@ -11,7 +11,7 @@ create table hotel_bookings (
 );
 
 create table booking_dates(
-	id INT,
+	booking_id INT,
 	check_in_dt VARCHAR2(250),
 	check_out_dt VARCHAR2(250)
 );
