@@ -1,6 +1,5 @@
 package com.gk.booking.app.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,11 +39,7 @@ public class HotelBookingController {
 	
 	@RequestMapping(method = RequestMethod.GET, value = "")
 	public List<BookingId> getBookings() {
-		List<BookingId> bookingList = new ArrayList<BookingId>();
-		bookingList.add(new BookingId(1));
-		bookingList.add(new BookingId(2));
-		
-		return bookingList;
+		return service.getBookings();
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = "")
