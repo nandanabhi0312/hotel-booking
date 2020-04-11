@@ -12,5 +12,10 @@ public class HotelBookingController {
 	public String getAppStatus() {
 		return "Available";
 	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/info")
+	public String getAppInfo() {
+		return "This is a hotel booking restful app implemented by Gowrav Krishnamurthy for demo purposes only";
+	}
 
 }
