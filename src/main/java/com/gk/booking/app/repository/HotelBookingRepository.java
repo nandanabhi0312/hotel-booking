@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.gk.booking.app.entity.Booking;
 
-public interface HotelBookingRepository extends JpaRepository<Booking, Long>{
+public interface HotelBookingRepository extends JpaRepository<Booking, Integer>{
 
 }

@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -17,17 +18,19 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Table(name = "booking_dates")
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class BookingDates implements Serializable {
-
-
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 5023332813623069189L;
-
-	@OneToOne
-	@JoinColumn(name = "booking_id")
-	@JsonIgnore
+	
 	@Id
+	@JsonIgnore
+	private Integer id;
+	
+	@OneToOne
+	@JoinColumn(name = "id")
+	@JsonIgnore
+	@MapsId
 	private Booking booking;
 
 	@JsonProperty(value = "checkin")
@@ -61,4 +64,14 @@ public class BookingDates implements Serializable {
 	public void setBooking(Booking booking) {
 		this.booking = booking;
 	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	
+	
 }

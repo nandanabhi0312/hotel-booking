@@ -11,17 +11,31 @@ import com.gk.booking.app.entity.BookingId;
 import com.gk.booking.app.entity.CreateBooking;
 import com.gk.booking.app.repository.HotelBookingRepository;
 
+/**
+ * 
+ * @author Gowrav Krishnamurthy
+ *
+ */
 @Service
-public class HotelBookingService {
+public class HotelBookingService { 
 
 	@Autowired
 	private HotelBookingRepository repository;
-
+	
+	/**
+	 * 
+	 * @param mBooking
+	 * @return
+	 */
 	public CreateBooking createBooking(Booking mBooking) {
 		Booking newBooking = repository.save(mBooking);
 		return new CreateBooking(newBooking);
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public List<BookingId> getBookings() {
 		List<Booking> bookingList = repository.findAll();
 
@@ -31,6 +45,15 @@ public class HotelBookingService {
 		}
 
 		return bookingIDList;
+	}
+	
+	/**
+	 * 
+	 * @param mId
+	 * @return
+	 */
+	public Booking getBooking(Integer mId) {
+		return repository.findById(mId).get();
 	}
 
 }
