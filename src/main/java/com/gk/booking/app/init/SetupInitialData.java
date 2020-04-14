@@ -19,8 +19,16 @@ public class SetupInitialData {
 	@Autowired
 	private HotelBookingService service;
 	
+	@Autowired
+	private UserAuthenticationData userData;
+	
 	@Bean(initMethod = "setup")
 	private void setup() {
+		
+		userData.initializeUserData();
+		
+		System.out.println("User data initialized successfully");
+		
 		CreateBooking createBooking1 = createBooking("John", 561, "Breakfast");
 		
 		System.out.println("1. Initial booking Created, Booking ID : "+createBooking1.getBookingid());
