@@ -53,4 +53,8 @@ public class HotelBookingController {
 		return service.createBooking(pBooking);
 	}
 
+	@RequestMapping(method = RequestMethod.PATCH, value = "/{id}")
+	public @ResponseBody Booking updateBooking(@PathVariable Integer id, @RequestBody Booking pBooking) {
+		return service.updateBooking(id, pBooking);
+	}
 }

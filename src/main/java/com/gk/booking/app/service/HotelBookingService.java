@@ -30,6 +30,7 @@ public class HotelBookingService {
 	public CreateBooking createBooking(Booking mBooking) {
 		Booking newBooking = repository.save(mBooking);
 		return new CreateBooking(newBooking);
+		
 	}
 
 	/**
@@ -38,7 +39,7 @@ public class HotelBookingService {
 	 */
 	public List<BookingId> getBookings() {
 		List<Booking> bookingList = repository.findAll();
-
+		
 		List<BookingId> bookingIDList = new ArrayList<BookingId>();
 		for (Booking booking : bookingList) {
 			bookingIDList.add(new BookingId(booking.getId()));
@@ -54,6 +55,37 @@ public class HotelBookingService {
 	 */
 	public Booking getBooking(Integer mId) {
 		return repository.findById(mId).get();
+	}
+	
+	/**
+	 * 
+	 * @param mId
+	 * @param mBooking
+	 * @return
+	 */
+	public Booking updateBooking(Integer mId, Booking mBooking) {
+		Booking oldBooking = repository.getOne(mId);
+		
+		if(mBooking.getFirstname() != null) {
+			oldBooking.setFirstname(mBooking.getFirstname());
+		}
+		if(mBooking.getLastname() != null) {
+			oldBooking.setLastname(mBooking.getLastname());
+		}
+		if(mBooking.getAdditionalneeds() != null) {
+			oldBooking.setAdditionalneeds(mBooking.getAdditionalneeds());
+		}
+	
+		oldBooking.setTotalprice(mBooking.getTotalprice());
+		oldBooking.setDepositpaid(oldBooking.isDepositpaid());
+		
+		if(mBooking.getBookingdates() != null) {
+			oldBooking.setBookingdates(mBooking.getBookingdates());
+		}
+		
+ 		
+		return repository.save(oldBooking);
+		
 	}
 
 }
