@@ -1,7 +1,6 @@
 package com.gk.booking.app.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -16,6 +15,8 @@ import com.gk.booking.app.entity.AuthenticationResponse;
 import com.gk.booking.app.service.HotelBookingUserDetailsService;
 import com.gk.booking.app.util.JwtUtil;
 
+import io.swagger.v3.oas.annotations.Operation;
+
 @RequestMapping(value = "/api/auth")
 @RestController
 public class AuthenticationController {
@@ -28,7 +29,8 @@ public class AuthenticationController {
 	
 	@Autowired
 	private AuthenticationManager authManager;
-
+	
+	@Operation(summary = "Get the JWT Token", description = "Send the username and password to get the JWT token to be used by PATCH / UPDATE API calls")
 	@RequestMapping(value = "", method = RequestMethod.POST)
 	public @ResponseBody AuthenticationResponse getAuthToken(@RequestParam String username,
 			@RequestParam String password) throws Exception {

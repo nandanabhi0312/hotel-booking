@@ -16,6 +16,10 @@ import com.gk.booking.app.entity.BookingId;
 import com.gk.booking.app.entity.CreateBooking;
 import com.gk.booking.app.service.HotelBookingService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.enums.ParameterIn;
+
 
 @RequestMapping(value = "/api/booking")
 @RestController
@@ -29,7 +33,7 @@ public class HotelBookingController {
 		return "Available";
 	}
 	
-	@RequestMapping(method = RequestMethod.GET, value = "/info")
+	@RequestMapping(method = RequestMethod.GET, value = "/info", produces = {"application/json"})
 	public AppInfo getAppInfo() {
 		
 		AppInfo appInfo = new AppInfo();
@@ -38,22 +42,24 @@ public class HotelBookingController {
 		return appInfo;
 	}
 	
-	@RequestMapping(method = RequestMethod.GET, value = "")
+	@RequestMapping(method = RequestMethod.GET, value = "", produces = {"application/json"})
 	public List<BookingId> getBookings() {
 		return service.getBookings();
 	}
 	
-	@RequestMapping(method = RequestMethod.GET, value = "/{id}")
+	@RequestMapping(method = RequestMethod.GET, value = "/{id}", produces = {"application/json"})
 	public Booking getBooking(@PathVariable Integer id) {
 		return service.getBooking(id);
 	}
 	
-	@RequestMapping(method = RequestMethod.POST, value = "")
+	@RequestMapping(method = RequestMethod.POST, value = "" , produces = {"application/json"})
 	public @ResponseBody CreateBooking createBooking(@RequestBody Booking pBooking) {
 		return service.createBooking(pBooking);
 	}
-
-	@RequestMapping(method = RequestMethod.PATCH, value = "/{id}")
+	
+	@Operation(summary = "Update / Partial update the booking", description = "Send the Updated JSON along with JWT token in Authorization header as Bearer token")
+	@RequestMapping(method = RequestMethod.PATCH, value = "/{id}" , produces = {"application/json"})
+	@Parameter(in = ParameterIn.HEADER, name = "Authorization")
 	public @ResponseBody Booking updateBooking(@PathVariable Integer id, @RequestBody Booking pBooking) {
 		return service.updateBooking(id, pBooking);
 	}
