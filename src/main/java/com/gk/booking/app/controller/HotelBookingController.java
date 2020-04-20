@@ -8,7 +8,6 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -46,16 +45,13 @@ public class HotelBookingController {
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/whoami", produces = { "application/json" })
-	public String getUserInfo(@RequestHeader("accept-language") String language,
-			@RequestHeader("User-Agent") String userAgent, HttpServletRequest request) {
+	public String getUserInfo(HttpServletRequest request) {
 
 		JSONObject userInfoObj = new JSONObject();
 
-		String ipAddress = request.getRemoteAddr();
-
-		userInfoObj.put("ipaddress", ipAddress);
-		userInfoObj.put("language", language);
-		userInfoObj.put("software", userAgent);
+		userInfoObj.put("ipaddress", request.getRemoteAddr());
+		userInfoObj.put("language", request.getHeader("accept-language"));
+		userInfoObj.put("software", request.getHeader("User-Agent"));
 
 		return userInfoObj.toString();
 	}
