@@ -12,7 +12,7 @@ pipeline {
         mvnHome = 'tool name: \'maven-3\', type: \'maven\''
       }
       steps {
-        sh 'mvn clean install -Dlicense.skip=true'
+        sh "${mvnHome}/bin/mvn clean install -Dlicense.skip=true'
       }
     }
 
