@@ -8,6 +8,9 @@ pipeline {
     }
 
     stage('Compile Code - MVN') {
+      environment {
+        mvnHome = 'tool name: \'maven-3\', type: \'maven\''
+      }
       steps {
         sh 'mvn clean install -Dlicense.skip=true'
       }
