@@ -7,5 +7,11 @@ pipeline {
       }
     }
 
+    stage('Compile Code - MVN') {
+      steps {
+        sh 'mvn clean install -Dlicense.skip=true'
+      }
+    }
+
   }
 }
