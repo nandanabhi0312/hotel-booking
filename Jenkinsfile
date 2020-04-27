@@ -15,6 +15,8 @@ pipeline {
         sh "${mvnHome}/bin/mvn clean install -Dlicense.skip=true"
       }
     }
-
+	stage('Build Docker image') {
+		sh 'docker build -t gowravk24/hotel-booking-app:1.0.0 .'
+	}
   }
 }
