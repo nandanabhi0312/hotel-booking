@@ -8,10 +8,16 @@ pipeline {
     }
 
     stage('Compile Code') {
+      environment {
+        mvnHome = 'tool name: \'maven-3\', type: \'maven\''
+      }
       steps {
         sh 'mvn clean install'
       }
     }
 
+  }
+  environment {
+    mvnHome = 'tool name: \'maven-3\', type: \'maven\''
   }
 }
