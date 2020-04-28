@@ -10,7 +10,7 @@ pipeline {
     stage('Compile Code') {
       steps {
         withMaven(maven: maven-3) {
-          sh "${mvnHome}/bin/mvn clean install"
+          sh 'mvn clean install'
         }
       }
     }
