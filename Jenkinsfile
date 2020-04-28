@@ -9,7 +9,7 @@ pipeline {
 
     stage('Compile Code') {
       steps {
-        sh "${MAVEN_HOME}/bin/mvn clean install"
+        sh "${MAVEN_HOME}/bin/mvn clean install -DskipTests"
       }
     }
 
