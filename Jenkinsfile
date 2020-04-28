@@ -7,13 +7,5 @@ pipeline {
       }
     }
 
-    stage('Compile Code - MVN') {
-      environment {
-        def mvnHome = tool name: 'maven-3', type: 'maven'
-      }
-      steps {
-        sh "${mvnHome}/bin/mvn clean install -Dlicense.skip=true"
-      }
-    }
   }
 }
