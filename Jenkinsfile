@@ -12,5 +12,12 @@ pipeline {
         sh "${MAVEN_HOME}/bin/mvn clean install"
       }
     }
+
+    stage('') {
+      steps {
+        sh 'docker build -f Dockerfile -t gk-hotel-booking .'
+      }
+    }
+
   }
 }
