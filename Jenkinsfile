@@ -19,5 +19,11 @@ pipeline {
       }
     }
 
+    stage('Start docker container') {
+      steps {
+        sh 'docker container stop gkhotelbooking'
+      }
+    }
+
   }
 }
