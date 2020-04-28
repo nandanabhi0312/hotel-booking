@@ -23,6 +23,7 @@ pipeline {
       steps {
         sh 'docker container stop gkhotelbooking'
         sh 'docker container rm gkhotelbooking'
+        sh 'docker run -d -p 8080:8080 --name gkhotelbooking gk-hotel-booking'
       }
     }
 
