@@ -24,7 +24,7 @@ pipeline {
         //Don't fail the build if the container is not running / available
         script {
           try {
-            'docker container stop gkhotelbooking'
+            docker container stop gkhotelbooking
           }catch (err) {
              echo err.getMessage()
           }
@@ -32,7 +32,7 @@ pipeline {
         //Don't fail the build if the container is not running / available
         script {
           try {
-            'docker container rm gkhotelbooking'
+            docker container rm gkhotelbooking
           }catch (err) {
             echo err.getMessage()
           }
