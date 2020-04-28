@@ -13,7 +13,7 @@ pipeline {
       }
     }
 
-    stage('') {
+    stage('Build Docker Image') {
       steps {
         sh 'docker build -f Dockerfile -t gk-hotel-booking .'
       }
