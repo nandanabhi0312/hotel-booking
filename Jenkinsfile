@@ -12,7 +12,7 @@ pipeline {
         mvnHome = 'tool name: \'maven-3\', type: \'maven\''
       }
       steps {
-        sh 'mvn clean install'
+        sh '$mvnHome/bin/mvn clean install'
       }
     }
 
