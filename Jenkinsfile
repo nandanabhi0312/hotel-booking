@@ -22,16 +22,20 @@ pipeline {
     stage('Start docker container') {
       steps {
         //Don't fail the build if the container is not running / available
-        try {
-          sh 'docker container stop gkhotelbooking'
-        }catch (err) {
-                echo err.getMessage()
+        script {
+          try {
+            'docker container stop gkhotelbooking'
+          }catch (err) {
+             echo err.getMessage()
+          }
         }
         //Don't fail the build if the container is not running / available
-        try {
-          sh 'docker container rm gkhotelbooking'
-        }catch (err) {
-                echo err.getMessage()
+        script {
+          try {
+            'docker container rm gkhotelbooking'
+          }catch (err) {
+            echo err.getMessage()
+          }
         }
         sh 'docker run -d -p 8080:8080 --name gkhotelbooking gk-hotel-booking'
       }
